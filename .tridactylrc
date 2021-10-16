@@ -1,7 +1,7 @@
 " General Settings
 set theme dark
 set allowautofocus true
-set hintfiltermdoe vimperator
+set hintfiltermode vimperator
 set smoothscroll true
 set hintdelay 100
 
