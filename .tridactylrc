@@ -1,0 +1,53 @@
+" General Settings
+set theme dark
+set allowautofocus true
+set hintfiltermdoe vimperator
+set smoothscroll true
+set hintdelay 100
+
+" Set jk to highest priority for hint mode characters 
+set hintchars jklhasdfgyuiopqwertnmzxcvb
+set hintfiltermode vimperator-reflow
+
+" Open vim with ctrl-i
+set editorcmd start cmd.exe /c "C:\Program Files (x86)\Vim\vim82\vim.exe"
+
+" Add followpage pattern for swedish support :) 
+set followpagepatterns.prev Previous
+set followpagepatterns.next ^(next|newer|nästa)\b|»|>>|more|>
+set followpagepatterns.prev ^(prev(ious)?|older)\b|«|<<
+
+" I want my search, / is not sufficient.
+unbind <C-f>
+
+" I want my select all
+unbind <C-a>
+
+" Nice comment hinting for reddit
+bind ;c hint -Jc [class*="expand"],[class="togg"],[class="comment_folder"]
+
+" Yank to git clone 
+bind <Space>g composite js "git clone " + document.location.href | clipboard yank
+
+" Default terminal <C-u> killline in insert mode
+bind --mode=insert <C-u> text.backward_kill_line
+
+"Nice default selection on some web pages 
+bindurl google.com f hint -Jc a > h3
+bindurl reddit.com f hint -Jc a[class~='thumbnail']
+bind youtube.com f hint -Jc a[id='thumbnail']
+bindurl flashback.org f hint -Jc a[class='thread-title'], a[title^='Gå till det']
+
+" Verbose hinting, in case nice selection is not enough
+bind ;f hint
+
+" followpage command is broken in flashback.org, this is a custom fix.  
+bindurl flashback.org ]] js window.location.href= document.querySelector("a[title^=Nästa]").href 
+
+" Subconfig Settings
+seturl www.google.com followpagepatterns.next Next
+
+" Old reddit is better 
+autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+autocmd DocLoad ^https://github.com/tridactyl/tridactyl/issues/new$ issue
+autocmd TriStart .* source_quiet
