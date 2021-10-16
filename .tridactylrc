@@ -35,7 +35,7 @@ bind --mode=insert <C-u> text.backward_kill_line
 "Nice default selection on some web pages 
 bindurl google.com f hint -Jc a > h3
 bindurl reddit.com f hint -Jc a[class~='thumbnail']
-bind youtube.com f hint -Jc a[id='thumbnail']
+bindurl youtube.com f hint -Jc a[id='thumbnail']
 bindurl flashback.org f hint -Jc a[class='thread-title'], a[title^='Gå till det']
 
 " Verbose hinting, in case nice selection is not enough
